@@ -6,10 +6,16 @@
 # 서로소 집합 : 공통 원소가 없는 집합
 
 # 특정 원소가 속한 집합 찾기
+# def find_parent(parent, x):
+#     if parent[x] != x:
+#         return find_parent(parent, parent[x])
+#     return x
+
+# # Path Compression & modified disjoint sets algorithm
 def find_parent(parent, x):
     if parent[x] != x:
-        return find_parent(parent, parent[x])
-    return x
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
 
 
 # 두 원소가 속한 집합 합치기
