@@ -1,3 +1,4 @@
+# 신장트리란 하나의 그래프가 있을 때 모든 노드를 포함하면서 사이클이 존재하지 않는 부분 그래프
 # graph는 노와 노드 사이에 연결된 간선의 정보를 갖고 있는 자료구조
 
 # 인접 행렬 :2차원 배열 사용 / 플로이드 워셜
@@ -31,36 +32,29 @@ def union_parent(parent, a, b):
 v, e = map(int, input().split())
 parent = [0] * (v + 1)
 
+edges = []
+result = 0
+
 # 부모를 자기 자신으로 초기화
 for i in range(1, v + 1):
     parent[i] = i
 
 
-cycle = False  # 사이클 발생 여부
-
 for i in range(e):
-    a, b = map(int, input().split())
+    a, b, cost = map(int, input().split())
     # 사이클이 발생한 경우
-    if find_parent(parent, a) == find_parent(parent, b):
-        cycle = True
-        break
-    # 발생하지 않았으면 합집합 수행
-    else:
+    edges.append((cost, a, b))
+
+# 간선을 비용순으로 정렬
+edges.sort()
+
+
+# 간선을 하나씩 확인함
+for edge in edges:
+    cost, a, b = edge
+    # 사이클이 발생하지 않는 경우(루트가 다른 경우)에만 집합에 포함
+    if find_parent(parent, a) != find_parent(parent, b):
         union_parent(parent, a, b)
+        result += cost
 
-# 각 원소가 속한 집합 출력
-print("각 원소가 속한 집합 :", end=" ")
-for i in range(1, v + 1):
-    print(find_parent(parent, i), end=" ")
-
-print()
-
-# 부모 테이블 출력
-print("부모 테이블 :", end=" ")
-for i in range(1, v + 1):
-    print(parent[i], end=" ")
-
-if cycle:
-    print("사이클 발생")
-else:
-    print("사이클 미발생")
+print(result)
