@@ -1,29 +1,30 @@
-# import numpy as np
+import numpy as np
 
 
-# # my code
-# def solution(arr1, arr2):
-#     result = []
-#     for i in range(len(arr1)):
-#         result.append([x + y for x, y in zip(arr1[i], arr2[i])])
-#     return result
+# my code
+def solution(arr1, arr2):
+    result = []
+    for i in range(len(arr1)):
+        result.append([x + y for x, y in zip(arr1[i], arr2[i])])
+    return result
 
 
-# print(solution([[1], [2]], [[3], [4]]))
+print(solution([[1], [2]], [[3], [4]]))
 
 
-# # using numpy
-# def sum(arr1, arr2):
-#     A = np.array(arr1)
-#     B = np.array(arr2)
-#     answer = (A+B)
+# using numpy
+def sum(arr1, arr2):
+    A = np.array(arr1)
+    B = np.array(arr2)
+    answer = (A+B)
 
-#     return answer.tolist()
-
-
-# print(sum([[1], [2]], [[3], [4]]))
+    return answer.tolist()
 
 
+print(sum([[1], [2]], [[3], [4]]))
+
+
+# using zip in zip
 def sumMatrix(A, B):
     answer = [[c + d for c, d in zip(a, b)] for a, b in zip(A, B)]
     return answer
