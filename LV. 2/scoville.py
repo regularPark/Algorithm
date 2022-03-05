@@ -3,7 +3,6 @@ import heapq
 
 def solution(scoville, K):
     answer = 0
-    scoville.sort()
     heapq.heapify(scoville)
 
     while scoville[0] <= K:
