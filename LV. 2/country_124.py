@@ -1,17 +1,10 @@
 def solution(n):
-    answer = ""
-    con_124 = ["1", "2", "4"]
-
-    [n // 3]
-
-    if n % 3 == 1:
-        answer += con_124[0]
-    elif n % 3 == 2:
-        answer += con_124[1]
-    elif n % 3 == 0:
-        answer += con_124[2]
-
-    return answer
+    a = n
+    b = n
+    while a > 1:
+        a //= 3
+        b %= 3
+        print(a, b)
 
 
-print(solution(13))
+print(solution(18))
